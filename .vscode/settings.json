@@ -1,8 +1,0 @@
-{
-  "java.testMethod": ["./gradlew test"],
-  "java.testClass": ["./gradlew test"],
-  "java.externalDependencies": [
-    "javax.servlet:javax.servlet-api:4.0.1",
-    "junit:junit:4.13.1"
-  ]
-}

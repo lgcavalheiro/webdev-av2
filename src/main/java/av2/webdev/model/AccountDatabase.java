@@ -4,8 +4,6 @@ import av2.webdev.classes.Student;
 import av2.webdev.classes.Teacher;
 import av2.webdev.classes.User;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AccountDatabase {
   ArrayList<User> db = new ArrayList<User>();
