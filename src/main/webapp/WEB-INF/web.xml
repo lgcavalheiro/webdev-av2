@@ -11,17 +11,6 @@
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
 
-    <servlet>
-        <display-name>SEAL - Login</display-name>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>av2.webdev.servlet.LoginServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30
