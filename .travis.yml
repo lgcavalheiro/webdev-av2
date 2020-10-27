@@ -1,10 +1,9 @@
 language: java
-os: linux
-dist: xenial
+os: osx
 jdk:
-  - openjdk8
   - openjdk10
   - openjdk11
+  - openjdk15
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
