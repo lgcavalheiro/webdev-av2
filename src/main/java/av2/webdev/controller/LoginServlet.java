@@ -1,12 +1,13 @@
-package av2.webdev.servlet;
+package av2.webdev.controller;
 
-import av2.webdev.model.AccountDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import av2.webdev.database.AccountDatabase;
 
 @WebServlet(name = "Login", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {

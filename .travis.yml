@@ -1,14 +1,10 @@
 language: java
-os:
+os: 
   - linux
   - osx
 dist: trusty
 jdk:
-  - oraclejdk8
-  - oraclejdk9
-  - openjdk8
-  - openjdk10
-  - openjdk11
+  - openjdk15
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

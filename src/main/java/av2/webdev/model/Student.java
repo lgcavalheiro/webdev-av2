@@ -1,4 +1,4 @@
-package av2.webdev.classes;
+package av2.webdev.model;
 
 public class Student extends User {
 

@@ -1,4 +1,4 @@
-package av2.webdev.classes;
+package av2.webdev.model;
 
 public class User {
   private int id;
