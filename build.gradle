@@ -7,8 +7,6 @@ plugins {
 
 group = 'av2.webdev'
 version = '0.0.1'
-sourceCompatibility = '11'
-targetCompatibility = '15'
 
 repositories {
     jcenter()
