@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'war'
     id 'pmd'
-    id "org.myire.quill.cobertura" version "2.4"
+    id "jacoco"
     id "org.gretty" version "3.0.3"
 }
 
@@ -23,3 +23,16 @@ gretty {
     httpPort = 3001
     contextPath = '/'
 }
+
+jacoco {
+  toolVersion = "0.8.6"
+}
+
+test {
+    finalizedBy jacocoTestReport 
+}
+
+jacocoTestReport {
+    dependsOn test 
+}
+
