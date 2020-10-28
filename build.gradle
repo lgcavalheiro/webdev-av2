@@ -1,7 +1,8 @@
 plugins {
     id 'java'
     id 'war'
-    id 'jacoco'
+    id 'pmd'
+    id "org.myire.quill.cobertura" version "2.4"
     id "org.gretty" version "3.0.3"
 }
 
@@ -13,10 +14,8 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/javax/javaee-web-api
     providedCompile group: 'javax', name: 'javaee-web-api', version: '8.0.1'
 
-    // https://mvnrepository.com/artifact/junit/junit
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
@@ -24,4 +23,3 @@ gretty {
     httpPort = 3001
     contextPath = '/'
 }
-
