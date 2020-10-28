@@ -28,10 +28,6 @@ jacoco {
     toolVersion = "0.8.6"
 }
 
-pmd {
-    toolVersion = "6.24.0"
-}
-
 test {
     finalizedBy jacocoTestReport 
 }
