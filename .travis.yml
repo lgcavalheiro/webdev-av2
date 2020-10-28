@@ -2,12 +2,11 @@ language: java
 install: skip
 os: osx
 jdk:
-  - openjdk8
   - openjdk10
   - openjdk11
   - openjdk15
 script:
-  - ./gradlew war --scan -no-daemon
+  - ./gradlew test -x jacocoTestReport war --scan -no-daemon --info
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

@@ -17,4 +17,9 @@ public class ServletTest {
   public void testCobertura() {
     assertEquals(AccountDatabase.sum(1, 2), 3);
   }
+
+  @Test
+  public void testBuildScan() {
+    assertEquals(12, 12);
+  }
 }
