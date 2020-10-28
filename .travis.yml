@@ -2,11 +2,12 @@ language: java
 install: skip
 os: osx
 jdk:
+  - openjdk8
   - openjdk10
   - openjdk11
   - openjdk15
 script:
-  - ./gradlew build --scan -s
+  - ./gradlew war --scan -no-daemon
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
