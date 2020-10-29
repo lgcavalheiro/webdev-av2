@@ -4,6 +4,7 @@ plugins {
     id 'pmd'
     id "jacoco"
     id "org.gretty" version "3.0.3"
+    id "org.kravemir.gradle.sass" version "1.2.4"
 }
 
 group = 'av2.webdev'
@@ -16,12 +17,27 @@ repositories {
 dependencies {
     providedCompile group: 'javax', name: 'javaee-web-api', version: '8.0.1'
 
+    compile group: "javax.servlet", name: "jstl", version: "1.2"
+
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
 gretty {
     httpPort = 3001
     contextPath = '/'
+}
+
+sass {
+    dev {
+        srcDir = file("$projectDir/src/main/webapp/view/scss")
+        outDir = file("$buildDir/inplaceWebapp/view")
+
+        exclude = "**/_*.scss"
+    }
+    prod {
+        srcDir = file("$projectDir/src/main/webapp/view/scss")
+        outDir = file("$buildDir/inplaceWebapp/view")
+    }
 }
 
 jacoco {
