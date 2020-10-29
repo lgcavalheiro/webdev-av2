@@ -29,14 +29,15 @@ gretty {
 
 sass {
     dev {
-        srcDir = file("$projectDir/src/main/webapp/view/scss")
-        outDir = file("$buildDir/inplaceWebapp/view")
-
+        srcDir = file("$projectDir/src/main/webapp/WEB-INF/resources/scss")
+        outDir = file("$projectDir/src/main/webapp/view")
         exclude = "**/_*.scss"
     }
     prod {
-        srcDir = file("$projectDir/src/main/webapp/view/scss")
-        outDir = file("$buildDir/inplaceWebapp/view")
+        srcDir = file("$projectDir/src/main/webapp/WEB-INF/resources/scss")
+        outDir = file("$projectDir/src/main/webapp/view")
+        exclude = "**/_*.scss"
+        minify = true
     }
 }
 
@@ -50,6 +51,14 @@ test {
 
 jacocoTestReport {
     dependsOn test 
+}
+
+check {
+    dependsOn clean
+}
+
+devSass {
+    dependsOn check
 }
 
 if (hasProperty('buildScan')) {

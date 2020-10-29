@@ -6,3 +6,4 @@ build
 
 # Added
 bin
+src/main/webapp/view/*.css
