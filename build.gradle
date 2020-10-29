@@ -1,3 +1,4 @@
+// INITIAL CONFIGS
 plugins {
     id 'java'
     id 'war'
@@ -22,6 +23,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
+// PLUGIN CONFIGS
 gretty {
     httpPort = 3001
     contextPath = '/'
@@ -29,12 +31,12 @@ gretty {
 
 sass {
     dev {
-        srcDir = file("$projectDir/src/main/webapp/WEB-INF/resources/scss")
+        srcDir = file("$projectDir/src/scss")
         outDir = file("$projectDir/src/main/webapp/view")
         exclude = "**/_*.scss"
     }
     prod {
-        srcDir = file("$projectDir/src/main/webapp/WEB-INF/resources/scss")
+        srcDir = file("$projectDir/src/scss")
         outDir = file("$projectDir/src/main/webapp/view")
         exclude = "**/_*.scss"
         minify = true
@@ -61,6 +63,7 @@ devSass {
     dependsOn check
 }
 
+// OTHER CONFIGS
 if (hasProperty('buildScan')) {
     buildScan {
         termsOfServiceUrl = 'https://gradle.com/terms-of-service'
