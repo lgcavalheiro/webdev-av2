@@ -9,33 +9,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import av2.webdev.database.AccountTable;
-import av2.webdev.model.Authenticator;
+import av2.webdev.model.DaoFactory;
 
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet(urlPatterns = { "/home" })
 public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  transient AccountTable db = new AccountTable();
-
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-  }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    String id = request.getParameter("id");
-    String password = request.getParameter("password");
     String userType = request.getParameter("userType");
 
-    Map<String, String> credentials = Authenticator.authenticateUser(id, password, userType);
+    Map<String, String> credentials = DaoFactory.createAuthenticatorDao().authenticateUser(request.getParameter("id"),
+        request.getParameter("password"), userType);
 
-    request.setAttribute("id", credentials.get("ID"));
-    request.setAttribute("name", credentials.get("NAME"));
-
-    if (request.getAttribute("id") == null || request.getAttribute("name") == null)
+    if (credentials.get("ID") == null || credentials.get("NAME") == null)
       request.getRequestDispatcher("view/loginError.html").forward(request, response);
     else {
+      request.setAttribute("id", credentials.get("ID"));
+      request.setAttribute("name", credentials.get("NAME"));
+
       if (userType.equalsIgnoreCase("student"))
         request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
       else

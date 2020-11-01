@@ -5,7 +5,7 @@ prefix="c" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Result</title>
+    <title>SEAL - Home Professor</title>
   </head>
   <body>
     <div>

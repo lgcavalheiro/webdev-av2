@@ -1,4 +1,4 @@
-package av2.webdev.database;
+package av2.webdev.model.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,7 +25,6 @@ public class DatabaseConnector {
             } catch (SQLException e) {
                 throw new DatabaseException(e.getMessage());
             }
-
         }
         return connection;
     }
@@ -34,16 +33,17 @@ public class DatabaseConnector {
         try (FileInputStream fs = new FileInputStream("build/resources/main/db.properties")) {
             Properties properties = new Properties();
             properties.load(fs);
+            fs.close();
             return properties;
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    public static void closeConnection(Connection conn) {
-        if (conn != null) {
+    public static void closeConnection() {
+        if (connection != null) {
             try {
-                conn.close();
+                connection.close();
             } catch (SQLException e) {
                 throw new DatabaseException(e.getMessage());
             }

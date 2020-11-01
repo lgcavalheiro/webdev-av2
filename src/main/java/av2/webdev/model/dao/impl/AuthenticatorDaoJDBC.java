@@ -1,4 +1,4 @@
-package av2.webdev.model;
+package av2.webdev.model.dao.impl;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import av2.webdev.database.DatabaseConnector;
+import av2.webdev.model.dao.AuthenticatorDao;
+import av2.webdev.model.utils.DatabaseConnector;
 
-public class Authenticator {
-    public static Map<String, String> authenticateUser(String id, String password, String userType) throws IOException {
+public class AuthenticatorDaoJDBC implements AuthenticatorDao {
+    @Override
+    public Map<String, String> authenticateUser(String id, String password, String userType) throws IOException {
         Connection connection = null;
         PreparedStatement query = null;
         ResultSet resultSet = null;
