@@ -14,6 +14,14 @@
     <img src="view/seal.svg" id="logo"></img>
     <div class="form-container">
         <form action="/login" method="post" name="loginForm">
+            <div id="user-type-radio">
+                <label for="aluno">Aluno</label>
+                <input type="radio" name="userType" id="aluno" value="student" checked>
+                
+                <label for="professor">Professor</label>
+                <input type="radio" name="userType" id="professor" value="teacher">
+            </div>
+
             <label for="id">Id de acesso</label>
             <input type="text" name="id" id="id" required>
 

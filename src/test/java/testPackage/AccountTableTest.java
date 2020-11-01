@@ -1,13 +1,13 @@
 package testPackage;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 import av2.webdev.database.AccountTable;
+import av2.webdev.model.User;
 
 public class AccountTableTest {
-  AccountTable db = new AccountTable();
+  transient AccountTable db = new AccountTable();
 
   @Test
   public void getByKeyAndValueUsingName() {
@@ -49,5 +49,19 @@ public class AccountTableTest {
     String test = db.getValueByIdAndKey(99990001, "invalid");
 
     assertEquals("", test);
+  }
+
+  @Test
+  public void getByIdValid() {
+    User test = db.getById(99990001);
+
+    assertEquals("99990001", test.getId());
+  }
+
+  @Test
+  public void getByIdInvalid() {
+    User test = db.getById(1234);
+
+    assertEquals(null, test);
   }
 }

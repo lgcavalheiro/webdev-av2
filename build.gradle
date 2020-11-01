@@ -17,9 +17,8 @@ repositories {
 
 dependencies {
     providedCompile group: 'javax', name: 'javaee-web-api', version: '8.0.1'
-
     compile group: "javax.servlet", name: "jstl", version: "1.2"
-
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
@@ -61,6 +60,10 @@ check {
 
 devSass {
     dependsOn check
+}
+
+pmd {
+    ignoreFailures = true
 }
 
 // OTHER CONFIGS

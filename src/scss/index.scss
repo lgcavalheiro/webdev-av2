@@ -17,6 +17,18 @@ button {
   cursor: pointer;
 }
 
+input[type="radio"] {
+  height: auto;
+}
+
+#user-type-radio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em;
+  margin-bottom: 1em;
+}
+
 .form-container {
   display: grid;
   grid-template-columns: 60%;

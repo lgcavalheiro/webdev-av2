@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-  private int id;
+  private String id;
   private String password;
   private String name;
 
-  public User(int id, String password, String name) {
+  public User(String id, String password, String name) {
     this.id = id;
     this.password = password;
     this.name = name;
   }
 
-  public int getId() {
+  public String getId() {
     return this.id;
   }
 
@@ -26,7 +26,7 @@ public class User {
     return this.name;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

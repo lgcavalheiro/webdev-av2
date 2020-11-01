@@ -9,8 +9,8 @@ prefix="c" %>
   </head>
   <body>
     <div>
-      <h1>Hello ${id}!</h1>
-      <h2>${password}</h2>
+      <h1>Olá professor(a) ${name}!</h1>
+      <h2>Seu id é: ${id}</h2>
     </div>
   </body>
 </html>
