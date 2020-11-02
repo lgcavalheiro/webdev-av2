@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
           student.setId(id);
           student.setName(credentials.get("NAME"));
           student.setDegree(DaoFactory.createDegreeDao().getDegreeByStudentId(id));
+          student.setCourses(DaoFactory.createCourseDao().getCourseByStudentId(id));
+          student.setGrades(DaoFactory.createGradeDao().getGradeByStudentId(id));
 
           request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
           break;

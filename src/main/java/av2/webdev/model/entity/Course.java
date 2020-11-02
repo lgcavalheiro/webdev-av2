@@ -1,18 +1,22 @@
 package av2.webdev.model.entity;
 
+import java.sql.Timestamp;
+
 public class Course {
     String id;
     String classNumber;
     String name;
+    Timestamp updateTimestamp;
 
     public Course() {
 
     }
 
-    public Course(String id, String classNumber, String name) {
+    public Course(String id, String classNumber, String name, Timestamp updateTimestamp) {
         this.id = id;
         this.classNumber = classNumber;
         this.name = name;
+        this.updateTimestamp = updateTimestamp;
     }
 
     public String getId() {
@@ -37,5 +41,13 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Timestamp getUpdateTimestamp() {
+        return updateTimestamp;
+    }
+
+    public void setUpdateTimestamp(Timestamp updateTimestamp) {
+        this.updateTimestamp = updateTimestamp;
     }
 }
