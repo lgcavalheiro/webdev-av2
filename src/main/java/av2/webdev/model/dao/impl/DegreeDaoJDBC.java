@@ -1,37 +1,33 @@
 package av2.webdev.model.dao.impl;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
-import av2.webdev.model.dao.AuthenticatorDao;
+import av2.webdev.model.dao.DegreeDao;
 import av2.webdev.model.dao.impl.utils.QueryLogger;
+import av2.webdev.model.entity.Degree;
 import av2.webdev.model.utils.DatabaseConnector;
 
-public class AuthenticatorDaoJDBC implements AuthenticatorDao {
+public class DegreeDaoJDBC implements DegreeDao {
     static private Connection connection;
     static private PreparedStatement query;
     static private ResultSet resultSet;
 
     @Override
-    public Map<String, String> authenticateUser(String id, String password, String userType) throws IOException {
+    public Degree getDegreeByStudentId(String studentId) {
         try {
             connection = DatabaseConnector.getConnection();
-            query = connection.prepareStatement(
-                    "SELECT ID, NAME FROM " + userType.toUpperCase(Locale.US) + " WHERE ID = ? AND PASSWORD = ?");
-            query.setInt(1, Integer.parseInt(id));
-            query.setString(2, password);
+            query = connection.prepareStatement("SELECT DEGREE.* FROM STUDENT"
+                    + " INNER JOIN DEGREE ON DEGREE_FK = DEGREE.ID" + " WHERE STUDENT.ID = ?");
+            query.setInt(1, Integer.parseInt(studentId));
             resultSet = query.executeQuery();
 
-            Map<String, String> result = new HashMap<String, String>();
-            while (resultSet.next()) {
-                result.put("ID", Integer.toString(resultSet.getInt("ID")));
-                result.put("NAME", resultSet.getString("NAME"));
+            Degree result = new Degree();
+            if (resultSet.next()) {
+                result.setId(String.valueOf(resultSet.getInt("ID")));
+                result.setName(resultSet.getString("NAME"));
             }
 
             return result;
@@ -39,7 +35,7 @@ public class AuthenticatorDaoJDBC implements AuthenticatorDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Authenticator DAo", "authenticateUser");
+                QueryLogger.logQuery("Degree Dao", "getDegreeByStudentId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -50,7 +46,6 @@ public class AuthenticatorDaoJDBC implements AuthenticatorDao {
                 e.printStackTrace();
             }
         }
-
         return null;
     }
 }
