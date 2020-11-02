@@ -1,4 +1,4 @@
-package av2.webdev.model;
+package av2.webdev.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;

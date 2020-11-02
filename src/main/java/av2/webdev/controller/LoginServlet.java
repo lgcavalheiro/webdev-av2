@@ -3,13 +3,13 @@ package av2.webdev.controller;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import av2.webdev.model.DaoFactory;
+import av2.webdev.model.utils.DaoFactory;
 
 @WebServlet(urlPatterns = { "/home" })
 public class LoginServlet extends HttpServlet {
@@ -28,10 +28,17 @@ public class LoginServlet extends HttpServlet {
       request.setAttribute("id", credentials.get("ID"));
       request.setAttribute("name", credentials.get("NAME"));
 
-      if (userType.equalsIgnoreCase("student"))
-        request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
-      else
-        request.getRequestDispatcher("view/TeacherHome.jsp").forward(request, response);
+      switch (userType) {
+        case "student":
+          request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
+          break;
+        case "teacher":
+          request.getRequestDispatcher("view/TeacherHome.jsp").forward(request, response);
+          break;
+        default:
+          request.getRequestDispatcher("view/loginError.html").forward(request, response);
+          break;
+      }
     }
   }
 }

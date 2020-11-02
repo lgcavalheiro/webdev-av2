@@ -4,23 +4,25 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import av2.webdev.model.dao.AuthenticatorDao;
 import av2.webdev.model.utils.DatabaseConnector;
 
 public class AuthenticatorDaoJDBC implements AuthenticatorDao {
+    static private Connection connection;
+    static private PreparedStatement query;
+    static private ResultSet resultSet;
+
     @Override
     public Map<String, String> authenticateUser(String id, String password, String userType) throws IOException {
-        Connection connection = null;
-        PreparedStatement query = null;
-        ResultSet resultSet = null;
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection.prepareStatement(
-                    "SELECT ID, NAME FROM " + userType.toUpperCase() + " WHERE ID = ? AND PASSWORD = ?");
+                    "SELECT ID, NAME FROM " + userType.toUpperCase(Locale.US) + " WHERE ID = ? AND PASSWORD = ?");
             query.setInt(1, Integer.parseInt(id));
             query.setString(2, password);
             resultSet = query.executeQuery();
@@ -35,11 +37,24 @@ public class AuthenticatorDaoJDBC implements AuthenticatorDao {
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            DatabaseConnector.closeStatement(query);
-            DatabaseConnector.closeResultSet(resultSet);
-            System.out.println("Transaction completed");
+            try {
+                logQuery("authenticateUser");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
+    }
+
+    @Override
+    public void logQuery(String queryName) {
+        System.out.println("[AUTHENTICATOR DAO] Query " + queryName + " completed.");
     }
 }

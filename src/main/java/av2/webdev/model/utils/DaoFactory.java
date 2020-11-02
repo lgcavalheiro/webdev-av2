@@ -1,4 +1,4 @@
-package av2.webdev.model;
+package av2.webdev.model.utils;
 
 import av2.webdev.model.dao.AuthenticatorDao;
 import av2.webdev.model.dao.impl.AuthenticatorDaoJDBC;

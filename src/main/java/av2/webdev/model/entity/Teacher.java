@@ -1,4 +1,4 @@
-package av2.webdev.model;
+package av2.webdev.model.entity;
 
 public class Teacher extends User {
 
