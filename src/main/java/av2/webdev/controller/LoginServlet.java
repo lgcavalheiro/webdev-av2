@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import av2.webdev.model.entity.Student;
+import av2.webdev.model.entity.Teacher;
 import av2.webdev.model.utils.DaoFactory;
 
 @WebServlet(urlPatterns = { "/home" })
@@ -28,6 +29,8 @@ public class LoginServlet extends HttpServlet {
     if (credentials == null || credentials.get("ID") == null || credentials.get("NAME") == null)
       request.getRequestDispatcher("view/loginError.html").forward(request, response);
     else {
+      HttpSession session;
+
       switch (userType) {
         case "student":
           Student student = new Student();
@@ -38,17 +41,22 @@ public class LoginServlet extends HttpServlet {
           student.setGrades(DaoFactory.createGradeDao().getGradeByStudentId(id));
           student.getGrades().forEach(grade -> grade.calculateIfApproved());
 
-          HttpSession session = request.getSession();
+          session = request.getSession();
           session.setAttribute("student", student);
 
-          request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
+          request.getRequestDispatcher("view/studentHome.jsp").forward(request, response);
           break;
         case "teacher":
           // degree + courses with students and grades
-          request.setAttribute("id", credentials.get("ID"));
-          request.setAttribute("name", credentials.get("NAME"));
+          Teacher teacher = new Teacher();
+          teacher.setId(id);
+          teacher.setName(credentials.get("NAME"));
+          teacher.setCourses(DaoFactory.createCourseDao().getCourseByTeacherId(id));
 
-          request.getRequestDispatcher("view/TeacherHome.jsp").forward(request, response);
+          session = request.getSession();
+          session.setAttribute("teacher", teacher);
+
+          request.getRequestDispatcher("view/teacherHome.jsp").forward(request, response);
           break;
         default:
           request.getRequestDispatcher("view/loginError.html").forward(request, response);

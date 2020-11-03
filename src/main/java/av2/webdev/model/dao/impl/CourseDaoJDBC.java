@@ -53,4 +53,39 @@ public class CourseDaoJDBC implements CourseDao {
         return null;
     }
 
+    @Override
+    public List<Course> getCourseByTeacherId(String teacherId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("SELECT COURSE.* FROM COURSE_TEACHER_JT"
+                    + " INNER JOIN COURSE ON COURSE_FK = COURSE.ID WHERE TEACHER_FK = ?");
+            query.setInt(1, Integer.parseInt(teacherId));
+            resultSet = query.executeQuery();
+
+            List<Course> result = new ArrayList<Course>();
+            while (resultSet.next()) {
+                Course temp = new Course(String.valueOf(resultSet.getInt("ID")),
+                        String.valueOf(resultSet.getString("CLASS_NUMBER")), resultSet.getString("NAME"),
+                        resultSet.getTimestamp("UPDATE_TIMESTAMP"));
+                result.add(temp);
+            }
+
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Course Dao", "getCourseByTeacherId");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

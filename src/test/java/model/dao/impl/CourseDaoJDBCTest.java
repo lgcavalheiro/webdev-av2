@@ -28,4 +28,20 @@ public class CourseDaoJDBCTest {
 
         assertEquals("[]", result.toString());
     }
+
+    @Test
+    public void testGetCourseByTeacherID() {
+        CourseDaoJDBC dao = new CourseDaoJDBC();
+        List<Course> result = dao.getCourseByTeacherId("99990001");
+
+        assertEquals("Fundamentos do Design", result.get(0).getName());
+    }
+
+    @Test
+    public void testGetCourseByTeacherIdInvalid() {
+        CourseDaoJDBC dao = new CourseDaoJDBC();
+        List<Course> result = dao.getCourseByTeacherId("12345");
+
+        assertEquals("[]", result.toString());
+    }
 }
