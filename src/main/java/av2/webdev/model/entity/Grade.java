@@ -11,6 +11,7 @@ public class Grade {
     Float examAv3;
     Float finalGrade;
     String courseId;
+    Boolean isApproved;
     Timestamp updateTimestamp;
 
     public Grade() {
@@ -28,6 +29,11 @@ public class Grade {
         this.finalGrade = finalGrade;
         this.courseId = courseId;
         this.updateTimestamp = updateTimestamp;
+        this.isApproved = this.finalGrade >= 7.0 ? true : false;
+    }
+
+    public void calculateIfApproved() {
+        this.isApproved = this.finalGrade >= 7.0 ? true : false;
     }
 
     public String getId() {
@@ -100,5 +106,13 @@ public class Grade {
 
     public void setFinalGrade(Float finalGrade) {
         this.finalGrade = finalGrade;
+    }
+
+    public Boolean getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(Boolean isApproved) {
+        this.isApproved = isApproved;
     }
 }

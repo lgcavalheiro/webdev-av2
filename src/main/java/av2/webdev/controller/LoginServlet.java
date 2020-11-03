@@ -24,26 +24,27 @@ public class LoginServlet extends HttpServlet {
     Map<String, String> credentials = DaoFactory.createAuthenticatorDao().authenticateUser(id,
         request.getParameter("password"), userType);
 
-    if (credentials.get("ID") == null || credentials.get("NAME") == null)
+    if (credentials == null || credentials.get("ID") == null || credentials.get("NAME") == null)
       request.getRequestDispatcher("view/loginError.html").forward(request, response);
     else {
-      request.setAttribute("id", credentials.get("ID"));
-      request.setAttribute("name", credentials.get("NAME"));
-
       switch (userType) {
         case "student":
-          // get degree + courses + grades
           Student student = new Student();
           student.setId(id);
           student.setName(credentials.get("NAME"));
           student.setDegree(DaoFactory.createDegreeDao().getDegreeByStudentId(id));
           student.setCourses(DaoFactory.createCourseDao().getCourseByStudentId(id));
           student.setGrades(DaoFactory.createGradeDao().getGradeByStudentId(id));
+          student.getGrades().forEach(grade -> grade.calculateIfApproved());
 
+          request.setAttribute("student", student);
           request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
           break;
         case "teacher":
           // degree + courses with students and grades
+          request.setAttribute("id", credentials.get("ID"));
+          request.setAttribute("name", credentials.get("NAME"));
+
           request.getRequestDispatcher("view/TeacherHome.jsp").forward(request, response);
           break;
         default:
