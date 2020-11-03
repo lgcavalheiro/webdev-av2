@@ -10,7 +10,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="stylesheet" href="view/studentHome.css" />
   </head>
   <body>
-    <%@ page import="av2.webdev.model.entity.Student" %>
     <nav>
       <span id="user-info"
         >Olá aluno(a) ${student.getName()} - ${student.getId()} - Graduação em

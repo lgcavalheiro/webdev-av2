@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,13 +32,6 @@
             <input type="submit" value="Acessar">
         </form>
     </div>
-    <!-- <footer>
-        <p>Grupo:</p>
-        <ul>
-            <li>Lucas Guimarães Cavalheiro - 2012200347</li>
-            <li>Wallace Arruda de Macedo - 2013101787</li>
-        </ul>
-    </footer> -->
 </body>
 
 </html>

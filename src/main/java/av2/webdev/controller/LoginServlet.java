@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import av2.webdev.model.entity.Student;
 import av2.webdev.model.utils.DaoFactory;
@@ -37,7 +38,9 @@ public class LoginServlet extends HttpServlet {
           student.setGrades(DaoFactory.createGradeDao().getGradeByStudentId(id));
           student.getGrades().forEach(grade -> grade.calculateIfApproved());
 
-          request.setAttribute("student", student);
+          HttpSession session = request.getSession();
+          session.setAttribute("student", student);
+
           request.getRequestDispatcher("view/StudentHome.jsp").forward(request, response);
           break;
         case "teacher":
