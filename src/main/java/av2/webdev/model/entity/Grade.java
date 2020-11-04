@@ -11,6 +11,7 @@ public class Grade {
     Float examAv3;
     Float finalGrade;
     String courseId;
+    String studentId;
     Boolean isApproved;
     Timestamp updateTimestamp;
 
@@ -114,5 +115,13 @@ public class Grade {
 
     public void setIsApproved(Boolean isApproved) {
         this.isApproved = isApproved;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

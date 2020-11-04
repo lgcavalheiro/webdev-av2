@@ -6,24 +6,26 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - Professor</title>
     <link rel="stylesheet" href="view/teacherHome.css" />
-    <link rel="shortcut icon" href="vlew/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="view/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <nav>
-      <span id="user-info">
-        Olá professor(a) ${teacher.getName()} - ${teacher.getId()}
-      </span>
+      <span id="user-info"> Olá professor(a) ${teacher.getName()} - ${teacher.getId()} </span>
       <div id="navigation-professor">
         <button>Notas dos alunos</button>
         <button>Dashboard</button>
       </div>
       <a href="..">Sair &DoubleRightArrow;</a>
     </nav>
+
     <div id="course-list">
       <ul>
         <c:forEach items="${teacher.getCourses()}" var="el">
           <li>
-            ${el.getClassNumber()} - ${el.getName()}
+            <a
+              href="/courseOverview?courseId=${el.getId()}&classNumber=${el.getClassNumber()}&name=${el.getName()}"
+              >${el.getClassNumber()} - ${el.getName()}</a
+            >
           </li>
         </c:forEach>
       </ul>

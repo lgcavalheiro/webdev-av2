@@ -20,4 +20,12 @@ public class GradeDaoJDBCTest {
         assertEquals("28", result.get(2).getId());
         assertEquals("34", result.get(3).getId());
     }
+
+    @Test
+    public void testGetGradeByCourseId() {
+        GradeDaoJDBC dao = new GradeDaoJDBC();
+        List<Grade> result = dao.getGradeByCourseId("2");
+
+        assertEquals(6, result.size());
+    }
 }

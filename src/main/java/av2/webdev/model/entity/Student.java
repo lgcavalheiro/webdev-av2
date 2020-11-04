@@ -11,16 +11,16 @@ public class Student extends User {
 
   }
 
+  public Student(String id, String password, String name) {
+    super(id, password, name);
+  }
+
   public Grade getGradeByCourseId(String courseId) {
     for (Grade g : this.grades) {
       if (g.getCourseId().equalsIgnoreCase(courseId))
         return g;
     }
     return null;
-  }
-
-  public Student(String id, String password, String name) {
-    super(id, password, name);
   }
 
   public Degree getDegree() {

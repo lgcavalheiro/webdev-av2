@@ -47,7 +47,6 @@ public class LoginServlet extends HttpServlet {
           request.getRequestDispatcher("view/studentHome.jsp").forward(request, response);
           break;
         case "teacher":
-          // degree + courses with students and grades
           Teacher teacher = new Teacher();
           teacher.setId(id);
           teacher.setName(credentials.get("NAME"));

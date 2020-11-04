@@ -6,6 +6,7 @@ import av2.webdev.model.dao.AuthenticatorDao;
 import av2.webdev.model.dao.CourseDao;
 import av2.webdev.model.dao.DegreeDao;
 import av2.webdev.model.dao.GradeDao;
+import av2.webdev.model.dao.StudentDao;
 import av2.webdev.model.utils.DaoFactory;
 
 public class DaoFactoryTest {
@@ -35,5 +36,12 @@ public class DaoFactoryTest {
         GradeDao dao = DaoFactory.createGradeDao();
 
         assert (dao.getClass().getName().contains("GradeDaoJDBC"));
+    }
+
+    @Test
+    public void testCreateStudentDao() {
+        StudentDao dao = DaoFactory.createStudentDao();
+
+        assert (dao.getClass().getName().contains("StudentDaoJDBC"));
     }
 }

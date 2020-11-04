@@ -63,4 +63,50 @@ public class GradeDaoJDBC implements GradeDao {
         return null;
     }
 
+    @Override
+    public List<Grade> getGradeByCourseId(String courseId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("SELECT GRADE.ID, STUDENT_FK, GRADE.EXAM_AV1,"
+                    + " GRADE.ASSIGNMENT_AV1, GRADE.EXAM_AV2, GRADE.ASSIGNMENT_AV2, GRADE.EXAM_AV3,"
+                    + " GRADE.FINAL_GRADE, GRADE.UPDATE_TIMESTAMP FROM STUDENT_COURSE_GRADE_JT"
+                    + " INNER JOIN GRADE ON GRADE_FK = GRADE.ID WHERE COURSE_FK = ?");
+            query.setInt(1, Integer.parseInt(courseId));
+            resultSet = query.executeQuery();
+
+            List<Grade> result = new ArrayList<Grade>();
+
+            while (resultSet.next()) {
+                Grade temp = new Grade();
+                temp.setId(String.valueOf(resultSet.getInt("ID")));
+                temp.setExamAv1(resultSet.getFloat("EXAM_AV1"));
+                temp.setExamAv2(resultSet.getFloat("EXAM_AV2"));
+                temp.setExamAv3(resultSet.getFloat("EXAM_AV3"));
+                temp.setAssignmentAv1(resultSet.getFloat("ASSIGNMENT_AV1"));
+                temp.setAssignmentAv2(resultSet.getFloat("ASSIGNMENT_AV2"));
+                temp.setFinalGrade(resultSet.getFloat("FINAL_GRADE"));
+                temp.setUpdateTimestamp(resultSet.getTimestamp("UPDATE_TIMESTAMP"));
+                temp.setStudentId(String.valueOf(resultSet.getInt("STUDENT_FK")));
+                result.add(temp);
+            }
+
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Grade Dao", "getGradeByCourseId");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 }
