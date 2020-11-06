@@ -23,16 +23,16 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <li>
             ${el.getClassNumber()} - ${el.getName()}
             <c:set var="grade" value="${student.getGradeByCourseId(el.getId())}" />
-            <c:import url="gradeTable.jsp">
-              <c:param name="examAv1" value="${grade.getExamAv1()}" />
-              <c:param name="examAv2" value="${grade.getExamAv2()}" />
-              <c:param name="examAv3" value="${grade.getExamAv3()}" />
-              <c:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
-              <c:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
-              <c:param name="finalGrade" value="${grade.getFinalGrade()}" />
-              <c:param name="isApproved" value="${grade.getIsApproved()}" />
-              <c:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
-            </c:import>
+            <jsp:include page="gradeTable.jsp">
+              <jsp:param name="examAv1" value="${grade.getExamAv1()}" />
+              <jsp:param name="examAv2" value="${grade.getExamAv2()}" />
+              <jsp:param name="examAv3" value="${grade.getExamAv3()}" />
+              <jsp:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
+              <jsp:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
+              <jsp:param name="finalGrade" value="${grade.getFinalGrade()}" />
+              <jsp:param name="isApproved" value="${grade.getIsApproved()}" />
+              <jsp:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
+            </jsp:include>
           </li>
         </c:forEach>
         <c:remove var="grade" />

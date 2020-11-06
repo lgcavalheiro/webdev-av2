@@ -11,29 +11,29 @@
         <tbody>
             <tr>
                 <th>Trabalhos</th>
-                <td><%= request.getParameter("examAv1") %></td>
-                <td><%= request.getParameter("examAv2") %></td>
-                <td><%= request.getParameter("examAv3") %></rd>
+                <td>${param.examAv1}</td>
+                <td>${param.examAv2}</td>
+                <td>${param.examAv3}</rd>
             </tr>
             <tr>
                 <th>APS</th>
-                <td><%= request.getParameter("assignmentAv1") %></td>
-                <td colspan="2"><%= request.getParameter("assignmentAv2") %></td>
+                <td>${param.assignmentAv1}</td>
+                <td colspan="2">${param.assignmentAv2}</td>
             </tr>
             <tr>
                 <th>Total</th>
-                <td colspan="3"><%= request.getParameter("finalGrade") %></td>
+                <td colspan="3">${param.finalGrade}</td>
             </tr>
             <tr>
                 <th>Situação</th>
                 <td colspan="3">
-                    <%= request.getParameter("isApproved").equalsIgnoreCase("true") ? "Aprovado" : "Reprovado" %>
+                    ${param.isApproved ? "Aprovado" : "Reprovado"}
                 </td>
             </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="4"><i>Última atualização em <%= request.getParameter("updateTimestamp") %></i></td>
+            <td colspan="4"><i>Última atualização em ${param.updateTimestamp}</i></td>
         </tr>
         </foot>
     </table>

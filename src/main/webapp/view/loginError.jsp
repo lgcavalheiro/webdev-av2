@@ -5,11 +5,11 @@ isErrorPage="true"%>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEAL - Ooops</title>
+    <title>SEAL - Login Error</title>
   </head>
   <body>
-    <h1>Deu erro! Oops! :(</h1>
-    <p>${pageContext.exception.message}</p>
-    <a href="${pageContext.request.contextPath}/">Voltar ao index.</a>
+    <h3>Erro ao fazer login</h3>
+    <p>Verifique suas credenciais e tente novamente.</p>
+    <a href="${pageContext.request.contextPath}/">Voltar para a tela de login</a>
   </body>
 </html>

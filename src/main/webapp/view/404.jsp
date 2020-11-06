@@ -5,11 +5,11 @@ isErrorPage="true"%>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEAL - Ooops</title>
+    <title>SEAL - 404</title>
   </head>
   <body>
-    <h1>Deu erro! Oops! :(</h1>
-    <p>${pageContext.exception.message}</p>
-    <a href="${pageContext.request.contextPath}/">Voltar ao index.</a>
+    <h1>404</h1>
+    <h2>Oops! Não encontramos a página procurada :(</h2>
+    <a href="${pageContext.request.contextPath}/">Voltar à página principal</a>
   </body>
 </html>

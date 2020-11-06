@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
     } else if (request.getSession().getAttribute("student") != null) {
       request.getRequestDispatcher("view/studentHome.jsp").forward(request, response);
     } else {
-      request.getRequestDispatcher("view/loginError.html").forward(request, response);
+      request.getRequestDispatcher("view/loginError.jsp").forward(request, response);
     }
   }
 
@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         request.getParameter("password"), userType);
 
     if (credentials == null || credentials.get("ID") == null || credentials.get("NAME") == null)
-      request.getRequestDispatcher("view/loginError.html").forward(request, response);
+      request.getRequestDispatcher("view/loginError.jsp").forward(request, response);
     else {
       HttpSession session;
 
@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
           request.getRequestDispatcher("view/teacherHome.jsp").forward(request, response);
           break;
         default:
-          request.getRequestDispatcher("view/loginError.html").forward(request, response);
+          request.getRequestDispatcher("view/loginError.jsp").forward(request, response);
           break;
       }
     }

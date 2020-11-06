@@ -14,22 +14,21 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <button type="button">Criar novo aluno nesta turma</button>
     <c:forEach items="${studentList}" var="el">
       <li class="grade-item">
-        ${el.getId()} - ${el.getName()}
         <c:set var="grade" value="${el.getGrades().get(0)}" />
-        <c:import url="gradeTable.jsp">
-          <c:param name="examAv1" value="${grade.getExamAv1()}" />
-          <c:param name="examAv2" value="${grade.getExamAv2()}" />
-          <c:param name="examAv3" value="${grade.getExamAv3()}" />
-          <c:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
-          <c:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
-          <c:param name="finalGrade" value="${grade.getFinalGrade()}" />
-          <c:param name="isApproved" value="${grade.getIsApproved()}" />
-          <c:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
-        </c:import>
-        <a type="button" href="#edit-modal">Editar nota</a>
-        <button type="button">Remover aluno desta turma</button>
+        <jsp:include page="gradeTableEdit.jsp">
+          <jsp:param name="studentId" value="${el.getId()}" />
+          <jsp:param name="studentName" value="${el.getName()}" />
+          <jsp:param name="examAv1" value="${grade.getExamAv1()}" />
+          <jsp:param name="examAv2" value="${grade.getExamAv2()}" />
+          <jsp:param name="examAv3" value="${grade.getExamAv3()}" />
+          <jsp:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
+          <jsp:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
+          <jsp:param name="finalGrade" value="${grade.getFinalGrade()}" />
+          <jsp:param name="isApproved" value="${grade.getIsApproved()}" />
+          <jsp:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
+        </jsp:include>
       </li>
     </c:forEach>
+    <c:remove var="grade" />
   </body>
-  <jsp:include page="modal.jsp"></jsp:include>
 </html>
