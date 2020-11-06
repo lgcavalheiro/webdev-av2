@@ -10,8 +10,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="stylesheet" href="view/courseOverview.css" />
   </head>
   <body>
+    <a href="${pageContext.request.contextPath}/home">Voltar</a>
+    <button type="button">Criar novo aluno nesta turma</button>
     <c:forEach items="${studentList}" var="el">
-      <li>
+      <li class="grade-item">
         ${el.getId()} - ${el.getName()}
         <c:set var="grade" value="${el.getGrades().get(0)}" />
         <c:import url="gradeTable.jsp">
@@ -24,7 +26,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <c:param name="isApproved" value="${grade.getIsApproved()}" />
           <c:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
         </c:import>
+        <a type="button" href="#edit-modal">Editar nota</a>
+        <button type="button">Remover aluno desta turma</button>
       </li>
     </c:forEach>
   </body>
+  <jsp:include page="modal.jsp"></jsp:include>
 </html>

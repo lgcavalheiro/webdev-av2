@@ -15,7 +15,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         >Olá aluno(a) ${student.getName()} - ${student.getId()} - Graduação em
         ${student.getDegree().getName()}
       </span>
-      <a href=".">Sair &DoubleRightArrow;</a>
+      <a href="${pageContext.request.contextPath}/logout">Sair &DoubleRightArrow;</a>
     </nav>
     <div id="container">
       <ul>

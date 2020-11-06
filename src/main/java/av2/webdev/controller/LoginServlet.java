@@ -19,6 +19,17 @@ public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    if (request.getSession().getAttribute("teacher") != null) {
+      request.getRequestDispatcher("view/teacherHome.jsp").forward(request, response);
+    } else if (request.getSession().getAttribute("student") != null) {
+      request.getRequestDispatcher("view/studentHome.jsp").forward(request, response);
+    } else {
+      request.getRequestDispatcher("view/loginError.html").forward(request, response);
+    }
+  }
+
+  @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     String id = request.getParameter("id");
     String userType = request.getParameter("userType");

@@ -15,7 +15,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <button>Notas dos alunos</button>
         <button>Dashboard</button>
       </div>
-      <a href="..">Sair &DoubleRightArrow;</a>
+      <a href="${pageContext.request.contextPath}/logout">Sair &DoubleRightArrow;</a>
     </nav>
 
     <div id="course-list">
