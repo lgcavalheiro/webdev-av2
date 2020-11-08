@@ -34,7 +34,7 @@ public class CreateStudentServlet extends HttpServlet {
         String studentName = request.getParameter("studentName");
         student.setId(request.getParameter("studentId"));
         student.setName(studentName);
-        student.setPassword(studentName.substring(0, 2).toUpperCase() + "123");
+        student.setPassword(studentName.substring(0, 3).toUpperCase() + "123");
         student.setDegree(degree);
         int rowsAffectedStudent = DaoFactory.createStudentDao().insertStudent(student);
         String gradeId = "";
@@ -47,5 +47,7 @@ public class CreateStudentServlet extends HttpServlet {
         if (gradeId.length() > 0) {
             DaoFactory.createJunctionDao().insertStudentCourseGradeJunction(student.getId(), courseId, gradeId);
         }
+
+        request.getRequestDispatcher("/courseOverview").forward(request, response);
     }
 }

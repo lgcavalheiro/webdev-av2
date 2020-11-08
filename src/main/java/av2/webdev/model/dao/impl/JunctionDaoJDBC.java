@@ -22,15 +22,17 @@ public class JunctionDaoJDBC implements JunctionDao {
             connection = DatabaseConnector.getConnection();
             query = connection
                     .prepareStatement("INSERT INTO `STUDENT_COURSE_GRADE_JT`(`STUDENT_FK`, `COURSE_FK`, `GRADE_FK`)"
-                            + " VALUES (2020010017, 3, 37)");
+                            + " VALUES (?, ?, ?)");
+            query.setInt(1, Integer.parseInt(studentId));
+            query.setInt(2, Integer.parseInt(courseId));
+            query.setInt(3, Integer.parseInt(gradeId));
 
             rowsAffected = query.executeUpdate();
-
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Grade Dao", "insertGrade");
+                QueryLogger.logQuery("junction Dao", "insertStudentCourseGradeJunction");
                 if (query != null)
                     query.close();
                 if (resultSet != null)

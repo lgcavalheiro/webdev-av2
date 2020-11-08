@@ -4,11 +4,13 @@ import av2.webdev.model.dao.AuthenticatorDao;
 import av2.webdev.model.dao.CourseDao;
 import av2.webdev.model.dao.DegreeDao;
 import av2.webdev.model.dao.GradeDao;
+import av2.webdev.model.dao.JunctionDao;
 import av2.webdev.model.dao.StudentDao;
 import av2.webdev.model.dao.impl.AuthenticatorDaoJDBC;
 import av2.webdev.model.dao.impl.CourseDaoJDBC;
 import av2.webdev.model.dao.impl.DegreeDaoJDBC;
 import av2.webdev.model.dao.impl.GradeDaoJDBC;
+import av2.webdev.model.dao.impl.JunctionDaoJDBC;
 import av2.webdev.model.dao.impl.StudentDaoJDBC;
 
 public class DaoFactory {
@@ -30,5 +32,9 @@ public class DaoFactory {
 
     public static StudentDao createStudentDao() {
         return new StudentDaoJDBC();
+    }
+
+    public static JunctionDao createJunctionDao() {
+        return new JunctionDaoJDBC();
     }
 }
