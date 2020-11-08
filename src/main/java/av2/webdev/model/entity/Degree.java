@@ -3,6 +3,7 @@ package av2.webdev.model.entity;
 public class Degree {
     private String id;
     private String name;
+    private String courseFk;
 
     public Degree() {
 
@@ -27,5 +28,13 @@ public class Degree {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCourseFk() {
+        return courseFk;
+    }
+
+    public void setCourseFk(String courseFk) {
+        this.courseFk = courseFk;
     }
 }

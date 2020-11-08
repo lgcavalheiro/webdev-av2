@@ -6,6 +6,7 @@ public class Course {
     String id;
     String classNumber;
     String name;
+    String degreeId;
     Timestamp updateTimestamp;
 
     public Course() {
@@ -49,5 +50,13 @@ public class Course {
 
     public void setUpdateTimestamp(Timestamp updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
+    }
+
+    public String getDegreeId() {
+        return degreeId;
+    }
+
+    public void setDegreeId(String degreeId) {
+        this.degreeId = degreeId;
     }
 }

@@ -54,4 +54,36 @@ public class StudentDaoJDBC implements StudentDao {
         return null;
     }
 
+    @Override
+    public int insertStudent(Student student) {
+        int rowsAffected = 0;
+
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection
+                    .prepareStatement("INSERT INTO STUDENT(`ID`, `NAME`, `PASSWORD`, `DEGREE_FK`, `UPDATE_TIMESTAMP`)"
+                            + " VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
+            query.setInt(1, Integer.parseInt(student.getId()));
+            query.setString(2, student.getName());
+            query.setString(3, student.getPassword());
+            query.setInt(4, Integer.parseInt(student.getDegree().getId()));
+            rowsAffected = query.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Student Dao", "insertStudent");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return rowsAffected;
+    }
 }

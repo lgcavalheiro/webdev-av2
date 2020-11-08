@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,6 +147,52 @@ public class GradeDaoJDBC implements GradeDao {
         }
 
         return rowsAffected;
+    }
+
+    @Override
+    public String insertGrade(Grade grade) {
+        int rowsAffected = 0;
+        String gradeId = "";
+
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement(
+                    "INSERT INTO GRADE (`EXAM_AV1`, `ASSIGNMENT_AV1`, `EXAM_AV2`, `ASSIGNMENT_AV2`, `EXAM_AV3`, `FINAL_GRADE`, `UPDATE_TIMESTAMP`)"
+                            + " VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)",
+                    Statement.RETURN_GENERATED_KEYS);
+            query.setFloat(1, grade.getExamAv1());
+            query.setFloat(2, grade.getAssignmentAv1());
+            query.setFloat(3, grade.getExamAv2());
+            query.setFloat(4, grade.getAssignmentAv2());
+            query.setFloat(5, grade.getExamAv3());
+            query.setFloat(6, grade.getFinalGrade());
+
+            rowsAffected = query.executeUpdate();
+
+            if (rowsAffected > 0) {
+                resultSet = query.getGeneratedKeys();
+                if (resultSet.next()) {
+                    gradeId = String.valueOf(resultSet.getInt(1));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Grade Dao", "insertGrade");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return gradeId;
     }
 
 }

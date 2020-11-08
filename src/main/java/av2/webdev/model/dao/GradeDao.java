@@ -10,4 +10,6 @@ public interface GradeDao {
     public List<Grade> getGradeByCourseId(String courseId);
 
     public int updateGrade(String studentId, String courseId, Grade grade);
+
+    public String insertGrade(Grade grade);
 }

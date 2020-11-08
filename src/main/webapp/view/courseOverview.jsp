@@ -11,6 +11,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <jsp:include page="teacherHeader.jsp"></jsp:include>
+    <a class="btn" href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
+      >Criar novo aluno nesta turma</a
+    >
     <div id="request-status">
       <c:if test="${rowsAffected != null && header.referer.contains('courseOverview')}">
         <c:choose>
