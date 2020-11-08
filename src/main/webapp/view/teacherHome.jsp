@@ -9,15 +9,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="shortcut icon" href="view/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <nav>
-      <span id="user-info"> Olá professor(a) ${teacher.getName()} - ${teacher.getId()} </span>
-      <div id="navigation-professor">
-        <button>Notas dos alunos</button>
-        <button>Dashboard</button>
-      </div>
-      <a href="${pageContext.request.contextPath}/logout">Sair &DoubleRightArrow;</a>
-    </nav>
-
+    <jsp:include page="teacherHeader.jsp"></jsp:include>
     <div id="course-list">
       <ul>
         <c:forEach items="${teacher.getCourses()}" var="el">
@@ -29,29 +21,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           </li>
         </c:forEach>
       </ul>
-    </div>
-
-    <!-- <div id="grades-wrapper">
-      <button id="modal-btn">Cadastrar aluno</button>
-      <div id="grades"></div>
-    </div> -->
-    <!-- <div id="dashboard" hidden>
-      <div id="grade-table"></div>
-      <div class="chart-wrapper">
-        <canvas id="deviation"></canvas>
-      </div>
-      <div class="chart-wrapper">
-        <canvas id="boxplot-chart"></canvas>
-      </div>
-      <div class="chart-wrapper">
-        <canvas id="histogram"></canvas>
-      </div>
-    </div> -->
-    <div id="modal" hidden>
-      <div id="modal-content">
-        <span class="close-btn">&times;</span>
-        <div></div>
-      </div>
     </div>
   </body>
 </html>

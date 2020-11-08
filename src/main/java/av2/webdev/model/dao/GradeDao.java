@@ -8,4 +8,6 @@ public interface GradeDao {
     public List<Grade> getGradeByStudentId(String studentId);
 
     public List<Grade> getGradeByCourseId(String courseId);
+
+    public int updateGrade(String studentId, String courseId, Grade grade);
 }

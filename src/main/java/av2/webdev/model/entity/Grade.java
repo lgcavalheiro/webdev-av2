@@ -19,6 +19,16 @@ public class Grade {
 
     }
 
+    public Grade(Float examAv1, Float assignmentAv1, Float examAv2, Float assignmentAv2, Float examAv3) {
+        this.examAv1 = examAv1;
+        this.assignmentAv1 = assignmentAv1;
+        this.examAv2 = examAv2;
+        this.assignmentAv2 = assignmentAv2;
+        this.examAv3 = examAv3;
+        this.calculateFinalGrade();
+        this.calculateIfApproved();
+    }
+
     public Grade(String id, Float examAv1, Float assignmentAv1, Float examAv2, Float assignmentAv2, Float examAv3,
             Float finalGrade, String courseId, Timestamp updateTimestamp) {
         this.id = id;
@@ -30,7 +40,20 @@ public class Grade {
         this.finalGrade = finalGrade;
         this.courseId = courseId;
         this.updateTimestamp = updateTimestamp;
-        this.isApproved = this.finalGrade >= 7.0 ? true : false;
+        this.calculateFinalGrade();
+        this.calculateIfApproved();
+    }
+
+    private void calculateFinalGrade() {
+        Float av1 = this.examAv1 + this.assignmentAv1;
+        Float av2 = this.examAv2 + this.assignmentAv2;
+
+        if (Float.sum(av1, av2) / 2 >= 7.0) {
+            this.finalGrade = Float.sum(av1, av2) / 2;
+        } else {
+            Float avMax = Float.max(av1, av2);
+            this.finalGrade = Float.sum(avMax, this.examAv3) / 2;
+        }
     }
 
     public void calculateIfApproved() {
@@ -102,6 +125,8 @@ public class Grade {
     }
 
     public Float getFinalGrade() {
+        this.calculateFinalGrade();
+        this.calculateIfApproved();
         return finalGrade;
     }
 

@@ -1,5 +1,6 @@
 @import "./index.scss";
 @import "./_tableStyle.scss";
+@import "./_teacherHeader";
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -55,12 +56,6 @@ body {
 
 [hidden] {
   display: none !important;
-}
-
-#navigation-professor {
-  display: flex;
-  justify-content: center;
-  gap: 1em;
 }
 
 #grades-wrapper {
@@ -120,12 +115,4 @@ form[name="createUser"] {
   grid-auto-columns: min-content;
   justify-content: center;
   gap: 0.6em;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: $green;
-  margin: -0.5em;
-  padding: 0.6em 0.4em;
 }

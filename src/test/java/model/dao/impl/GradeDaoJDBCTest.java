@@ -28,4 +28,22 @@ public class GradeDaoJDBCTest {
 
         assertEquals(6, result.size());
     }
+
+    @Test
+    public void testUpdateGrade() {
+        GradeDaoJDBC dao = new GradeDaoJDBC();
+        int rowsAffected = dao.updateGrade("2020010001", "3",
+                new Grade((float) 5.0, (float) 1.2, (float) 7.2, (float) 2.0, (float) 6.9));
+
+        assertEquals(1, rowsAffected);
+    }
+
+    @Test
+    public void testUpdateGradeInvalid() {
+        GradeDaoJDBC dao = new GradeDaoJDBC();
+        int rowsAffected = dao.updateGrade("1234", "999",
+                new Grade((float) 5.0, (float) 1.2, (float) 7.2, (float) 2.0, (float) 6.9));
+
+        assertEquals(0, rowsAffected);
+    }
 }

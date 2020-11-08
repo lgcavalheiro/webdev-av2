@@ -109,4 +109,43 @@ public class GradeDaoJDBC implements GradeDao {
         return null;
     }
 
+    @Override
+    public int updateGrade(String studentId, String courseId, Grade grade) {
+        int rowsAffected = 0;
+
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("UPDATE GRADE INNER JOIN STUDENT_COURSE_GRADE_JT"
+                    + " ON STUDENT_COURSE_GRADE_JT.GRADE_FK = GRADE.ID"
+                    + " SET EXAM_AV1=?, ASSIGNMENT_AV1=?, EXAM_AV2=?, ASSIGNMENT_AV2=?, EXAM_AV3=?, FINAL_GRADE=?"
+                    + " WHERE STUDENT_COURSE_GRADE_JT.STUDENT_FK = ? AND STUDENT_COURSE_GRADE_JT.COURSE_FK = ?");
+            query.setFloat(1, grade.getExamAv1());
+            query.setFloat(2, grade.getAssignmentAv1());
+            query.setFloat(3, grade.getExamAv2());
+            query.setFloat(4, grade.getAssignmentAv2());
+            query.setFloat(5, grade.getExamAv3());
+            query.setFloat(6, grade.getFinalGrade());
+            query.setInt(7, Integer.valueOf(studentId));
+            query.setInt(8, Integer.valueOf(courseId));
+
+            rowsAffected = query.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Grade Dao", "updateGrade");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return rowsAffected;
+    }
+
 }

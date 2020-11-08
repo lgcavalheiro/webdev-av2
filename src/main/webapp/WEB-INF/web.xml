@@ -6,7 +6,7 @@
         <welcome-file>view/index.jsp</welcome-file>
     </welcome-file-list>
 
-    <error-page>
+    <!-- <error-page>
         <error-code>404</error-code>
         <location>/view/404.jsp</location>
     </error-page>
@@ -17,7 +17,7 @@
     <error-page>
         <error-code>500</error-code>
         <location>/view/errorHandler.jsp</location>
-    </error-page>
+    </error-page> -->
 
     <session-config>
         <session-timeout>30</session-timeout>

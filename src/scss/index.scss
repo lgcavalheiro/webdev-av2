@@ -7,9 +7,10 @@ body {
 }
 
 input,
-button {
+button,
+.btn {
   border: 1px solid $black;
-  height: 2em;
+  // height: 2em;
   border-radius: 16px;
   margin: 6px 0px;
   text-align: center;
@@ -49,7 +50,8 @@ input[type="radio"] {
 label,
 input[type="submit"],
 h1,
-button {
+button,
+.btn {
   justify-self: center;
 }
 
@@ -59,7 +61,8 @@ form[name="loginForm"] {
 }
 
 input[type="submit"],
-button {
+button,
+.btn {
   background-color: $blue;
   border: 1px solid $blue;
   color: $white;

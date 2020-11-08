@@ -21,6 +21,17 @@ public class CourseOverviewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        this.processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        this.processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String courseId = request.getParameter("courseId");
         List<Student> studentList = DaoFactory.createStudentDao().getStudentByCourseId(courseId);
         List<Grade> gradeList = DaoFactory.createGradeDao().getGradeByCourseId(courseId);
@@ -37,6 +48,7 @@ public class CourseOverviewServlet extends HttpServlet {
         request.getSession().setAttribute("studentList", studentList);
         request.getSession().setAttribute("classNumber", request.getParameter("classNumber"));
         request.getSession().setAttribute("courseName", request.getParameter("name"));
+        request.getSession().setAttribute("courseId", courseId);
 
         request.getRequestDispatcher("view/courseOverview.jsp").forward(request, response);
     }

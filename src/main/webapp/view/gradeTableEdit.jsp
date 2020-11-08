@@ -4,7 +4,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <div>
     <fieldset>
       <legend>${param.studentName} - ${param.studentId}</legend>
-      <form name="studentEditForm">
+      <form name="studentEditForm" method="POST">
         <table>
             <thead>
                 <th></th>
@@ -18,8 +18,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                     <td>
                       <input
                         type="number"
-                        name="trabalhoAV1"
-                        id="trabalhoAV1"
+                        name="examAv1"
+                        id="examAv1"
                         min="0"
                         max="7"
                         step="0.1"
@@ -30,8 +30,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                     <td>
                       <input
                         type="number"
-                        name="trabalhoAV2"
-                        id="trabalhoAV2"
+                        name="examAv2"
+                        id="examAv2"
                         min="0"
                         max="8"
                         step="0.1"
@@ -42,8 +42,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                     <td>
                       <input
                         type="number"
-                        name="trabalhoAV3"
-                        id="trabalhoAV3"
+                        name="examAv3"
+                        id="examAv3"
                         min="0"
                         max="10"
                         step="0.1"
@@ -57,8 +57,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                     <td>
                       <input
                         type="number"
-                        name="APSAV1"
-                        id="APSAV1"
+                        name="assignmentAv1"
+                        id="assignmentAv1"
                         min="0"
                         max="3"
                         step="0.1"
@@ -69,8 +69,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                     <td colspan="2">
                       <input
                         type="number"
-                        name="APSAV2"
-                        id="APSAV2"
+                        name="assignmentAv2"
+                        id="assignmentAv2"
                         min="0"
                         max="2"
                         step="0.1"
@@ -96,8 +96,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             </tr>
             </foot>
         </table>
-        <input type="submit" value="Atualizar ${param.studentName}" />
-        <input type="submit" value="Remover ${param.studentName} desta turma" />
+        <input type="hidden" name="courseId" value="${param.courseId}">
+        <input type="hidden" name="studentId" value="${param.studentId}">
+
+        <input type="submit" formaction="updateStudent" value="Atualizar ${param.studentName}" />
+        <input type="submit" formaction="deleteStudent" value="Remover ${param.studentName} desta turma" />
       </form>
     </fieldset>
   </div>
