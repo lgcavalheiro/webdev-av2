@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import av2.webdev.model.entity.Grade;
 import av2.webdev.model.utils.DaoFactory;
 
 @WebServlet(urlPatterns = { "/deleteStudent" })
@@ -21,18 +20,12 @@ public class DeleteStudentServlet extends HttpServlet {
         String studentId = request.getParameter("studentId");
         String courseId = request.getParameter("courseId");
 
-        Float examAv1 = Float.valueOf(request.getParameter("examAv1"));
-        Float examAv2 = Float.valueOf(request.getParameter("examAv2"));
-        Float examAv3 = Float.valueOf(request.getParameter("examAv3"));
+        // get grade id for this student + course
+        String gradeId = DaoFactory.createJunctionDao().getGradeIdByStudentAndCourse(studentId, courseId);
 
-        Float assignmentAv1 = Float.valueOf(request.getParameter("assignmentAv1"));
-        Float assignmentAv2 = Float.valueOf(request.getParameter("assignmentAv2"));
-
-        Grade grade = new Grade(examAv1, assignmentAv1, examAv2, assignmentAv2, examAv3);
-
-        // DaoFactory.createGradeDao().updateGrade(studentId, courseId, grade);
-
-        System.out.println("INSIDE DELETE FAAAQ: " + studentId);
+        // delete grade and entry in junction table
+        DaoFactory.createGradeDao().deleteGrade(gradeId);
+        DaoFactory.createJunctionDao().deleteStudentCourseGradeJunction(studentId, courseId, gradeId);
 
         request.getRequestDispatcher("/courseOverview").forward(request, response);
     }

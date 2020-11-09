@@ -195,4 +195,30 @@ public class GradeDaoJDBC implements GradeDao {
         return gradeId;
     }
 
+    @Override
+    public void deleteGrade(String gradeId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("DELETE FROM GRADE WHERE ID = ?");
+            query.setInt(1, Integer.parseInt(gradeId));
+
+            query.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("Grade Dao", "deleteGrade");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
