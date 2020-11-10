@@ -26,7 +26,7 @@ public class GradeDaoJDBCTest {
         GradeDaoJDBC dao = new GradeDaoJDBC();
         List<Grade> result = dao.getGradeByCourseId("2");
 
-        assertEquals(8, result.size());
+        assertEquals(7, result.size());
     }
 
     @Test

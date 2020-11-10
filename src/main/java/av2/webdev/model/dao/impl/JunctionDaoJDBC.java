@@ -16,8 +16,6 @@ public class JunctionDaoJDBC implements JunctionDao {
 
     @Override
     public int insertStudentCourseGradeJunction(String studentId, String courseId, String gradeId) {
-        int rowsAffected = 0;
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection
@@ -27,7 +25,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             query.setInt(2, Integer.parseInt(courseId));
             query.setInt(3, Integer.parseInt(gradeId));
 
-            rowsAffected = query.executeUpdate();
+            return query.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -44,7 +42,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             }
         }
 
-        return rowsAffected;
+        return 0;
     }
 
     @Override
@@ -58,13 +56,9 @@ public class JunctionDaoJDBC implements JunctionDao {
 
             resultSet = query.executeQuery();
 
-            String result = "";
+            if (resultSet.next())
+                return String.valueOf(resultSet.getInt("GRADE_FK"));
 
-            while (resultSet.next()) {
-                result = String.valueOf(resultSet.getInt("GRADE_FK"));
-            }
-
-            return result;
         } catch (Exception e) {
             System.out.println(e);
         } finally {

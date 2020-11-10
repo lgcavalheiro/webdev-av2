@@ -15,6 +15,8 @@ public class Grade {
     Boolean isApproved;
     Timestamp updateTimestamp;
 
+    final transient Float minimumGrade = 7.0f;
+
     public Grade() {
 
     }
@@ -44,11 +46,11 @@ public class Grade {
         this.calculateIfApproved();
     }
 
-    private void calculateFinalGrade() {
+    final private void calculateFinalGrade() {
         Float av1 = this.examAv1 + this.assignmentAv1;
         Float av2 = this.examAv2 + this.assignmentAv2;
 
-        if (Float.sum(av1, av2) / 2 >= 7.0) {
+        if (Float.sum(av1, av2) / 2 >= this.minimumGrade) {
             this.finalGrade = Float.sum(av1, av2) / 2;
         } else {
             Float avMax = Float.max(av1, av2);
@@ -56,8 +58,8 @@ public class Grade {
         }
     }
 
-    public void calculateIfApproved() {
-        this.isApproved = this.finalGrade >= 7.0 ? true : false;
+    final public void calculateIfApproved() {
+        this.isApproved = this.finalGrade >= this.minimumGrade ? true : false;
     }
 
     public String getId() {

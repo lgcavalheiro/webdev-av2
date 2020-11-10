@@ -24,8 +24,8 @@ public class DeleteStudentServlet extends HttpServlet {
         String gradeId = DaoFactory.createJunctionDao().getGradeIdByStudentAndCourse(studentId, courseId);
 
         // delete grade and entry in junction table
-        DaoFactory.createGradeDao().deleteGrade(gradeId);
         DaoFactory.createJunctionDao().deleteStudentCourseGradeJunction(studentId, courseId, gradeId);
+        DaoFactory.createGradeDao().deleteGrade(gradeId);
 
         request.getRequestDispatcher("/courseOverview").forward(request, response);
     }
