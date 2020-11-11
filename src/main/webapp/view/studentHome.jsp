@@ -1,15 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:wrapper title="SEAL - Home Aluno">
-  <nav>
-    <span id="user-info"
-      >Olá aluno(a) ${student.getName()} - ${student.getId()} - Graduação em
-      ${student.getDegree().getName()}
-    </span>
-    <a href="${pageContext.request.contextPath}/logout">Sair &DoubleRightArrow;</a>
-  </nav>
+  <jsp:include page="fragment/studentHeader.jsp"></jsp:include>
   <div id="container">
     <ul>
       <c:forEach items="${student.getCourses()}" var="el">

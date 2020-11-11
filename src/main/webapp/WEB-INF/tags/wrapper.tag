@@ -12,7 +12,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@attribute name="title" 
   <body>
     <jsp:doBody />
     <footer>
-      <p>Copyleft C Lucas &amp; Wallace</p>
+      <p>
+        Copyleft (ɔ) Lucas Guimarães Cavalheiro - 2012200347 &amp; Wallace Arruda de Macedo -
+        2013101787
+      </p>
     </footer>
   </body>
 </html>
