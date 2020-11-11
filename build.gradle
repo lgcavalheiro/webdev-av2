@@ -31,12 +31,12 @@ gretty {
 sass {
     dev {
         srcDir = file("$projectDir/src/scss")
-        outDir = file("$projectDir/src/main/webapp/view")
+        outDir = file("$projectDir/src/main/webapp")
         exclude = "**/_*.scss"
     }
     prod {
         srcDir = file("$projectDir/src/scss")
-        outDir = file("$projectDir/src/main/webapp/view")
+        outDir = file("$projectDir/src/main/webapp")
         exclude = "**/_*.scss"
         minify = true
     }

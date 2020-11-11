@@ -1,4 +1,8 @@
-@import "./_variables";
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background: $white;
   color: $black;
@@ -82,4 +86,11 @@ input[type="text"]:focus,
 input[type="password"]:focus {
   transform: scale(1.16);
   border: 2px solid $blue;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  justify-self: center;
+  margin-bottom: -3em;
 }
