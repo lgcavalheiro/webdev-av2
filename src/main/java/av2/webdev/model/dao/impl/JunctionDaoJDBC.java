@@ -16,8 +16,6 @@ public class JunctionDaoJDBC implements JunctionDao {
 
     @Override
     public int insertStudentCourseGradeJunction(String studentId, String courseId, String gradeId) {
-        int rowsAffected = 0;
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection
@@ -27,7 +25,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             query.setInt(2, Integer.parseInt(courseId));
             query.setInt(3, Integer.parseInt(gradeId));
 
-            rowsAffected = query.executeUpdate();
+            return query.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -44,6 +42,67 @@ public class JunctionDaoJDBC implements JunctionDao {
             }
         }
 
-        return rowsAffected;
+        return 0;
+    }
+
+    @Override
+    public String getGradeIdByStudentAndCourse(String studentId, String courseId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement(
+                    "SELECT `GRADE_FK` FROM `STUDENT_COURSE_GRADE_JT` WHERE STUDENT_FK = ? AND COURSE_FK = ?");
+            query.setInt(1, Integer.parseInt(studentId));
+            query.setInt(2, Integer.parseInt(courseId));
+
+            resultSet = query.executeQuery();
+
+            if (resultSet.next())
+                return String.valueOf(resultSet.getInt("GRADE_FK"));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("junction Dao", "getGradeIdByStudentAndCourse");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public void deleteStudentCourseGradeJunction(String studentId, String courseId, String gradeId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("DELETE FROM `STUDENT_COURSE_GRADE_JT`"
+                    + " WHERE STUDENT_FK = ? AND COURSE_FK = ? AND GRADE_FK = ?");
+            query.setInt(1, Integer.parseInt(studentId));
+            query.setInt(2, Integer.parseInt(courseId));
+            query.setInt(3, Integer.parseInt(gradeId));
+
+            query.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery("junction Dao", "deleteStudentCourseGradeJunction");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -12,4 +12,6 @@ public interface GradeDao {
     public int updateGrade(String studentId, String courseId, Grade grade);
 
     public String insertGrade(Grade grade);
+
+    public void deleteGrade(String gradeId);
 }

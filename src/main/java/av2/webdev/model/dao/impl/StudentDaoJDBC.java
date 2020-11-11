@@ -56,8 +56,6 @@ public class StudentDaoJDBC implements StudentDao {
 
     @Override
     public int insertStudent(Student student) {
-        int rowsAffected = 0;
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection
@@ -67,7 +65,8 @@ public class StudentDaoJDBC implements StudentDao {
             query.setString(2, student.getName());
             query.setString(3, student.getPassword());
             query.setInt(4, Integer.parseInt(student.getDegree().getId()));
-            rowsAffected = query.executeUpdate();
+
+            return query.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -84,6 +83,6 @@ public class StudentDaoJDBC implements StudentDao {
             }
         }
 
-        return rowsAffected;
+        return 0;
     }
 }

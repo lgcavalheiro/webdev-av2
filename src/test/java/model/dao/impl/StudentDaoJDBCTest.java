@@ -15,6 +15,6 @@ public class StudentDaoJDBCTest {
         StudentDaoJDBC dao = new StudentDaoJDBC();
         List<Student> result = dao.getStudentByCourseId("2");
 
-        assertEquals(6, result.size());
+        assertEquals(7, result.size());
     }
 }

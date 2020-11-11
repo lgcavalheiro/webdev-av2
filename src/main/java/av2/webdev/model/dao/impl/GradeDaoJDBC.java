@@ -50,7 +50,7 @@ public class GradeDaoJDBC implements GradeDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Grade Dao", "getGradeByStudentId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getGradeByStudentId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -96,7 +96,7 @@ public class GradeDaoJDBC implements GradeDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Grade Dao", "getGradeByCourseId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getGradeByCourseId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -112,8 +112,6 @@ public class GradeDaoJDBC implements GradeDao {
 
     @Override
     public int updateGrade(String studentId, String courseId, Grade grade) {
-        int rowsAffected = 0;
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection.prepareStatement("UPDATE GRADE INNER JOIN STUDENT_COURSE_GRADE_JT"
@@ -129,12 +127,12 @@ public class GradeDaoJDBC implements GradeDao {
             query.setInt(7, Integer.valueOf(studentId));
             query.setInt(8, Integer.valueOf(courseId));
 
-            rowsAffected = query.executeUpdate();
+            return query.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Grade Dao", "updateGrade");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "updateGrade");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -146,14 +144,11 @@ public class GradeDaoJDBC implements GradeDao {
             }
         }
 
-        return rowsAffected;
+        return 0;
     }
 
     @Override
     public String insertGrade(Grade grade) {
-        int rowsAffected = 0;
-        String gradeId = "";
-
         try {
             connection = DatabaseConnector.getConnection();
             query = connection.prepareStatement(
@@ -167,20 +162,18 @@ public class GradeDaoJDBC implements GradeDao {
             query.setFloat(5, grade.getExamAv3());
             query.setFloat(6, grade.getFinalGrade());
 
-            rowsAffected = query.executeUpdate();
+            int rowsAffected = query.executeUpdate();
 
             if (rowsAffected > 0) {
                 resultSet = query.getGeneratedKeys();
-                if (resultSet.next()) {
-                    gradeId = String.valueOf(resultSet.getInt(1));
-                }
+                if (resultSet.next())
+                    return String.valueOf(resultSet.getInt(1));
             }
-
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Grade Dao", "insertGrade");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "insertGrade");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -192,7 +185,33 @@ public class GradeDaoJDBC implements GradeDao {
             }
         }
 
-        return gradeId;
+        return "";
+    }
+
+    @Override
+    public void deleteGrade(String gradeId) {
+        try {
+            connection = DatabaseConnector.getConnection();
+            query = connection.prepareStatement("DELETE FROM GRADE WHERE ID = ?");
+            query.setInt(1, Integer.parseInt(gradeId));
+
+            query.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "deleteGrade");
+                if (query != null)
+                    query.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

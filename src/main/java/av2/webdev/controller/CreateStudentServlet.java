@@ -1,6 +1,7 @@
 package av2.webdev.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,7 @@ public class CreateStudentServlet extends HttpServlet {
         String studentName = request.getParameter("studentName");
         student.setId(request.getParameter("studentId"));
         student.setName(studentName);
-        student.setPassword(studentName.substring(0, 3).toUpperCase() + "123");
+        student.setPassword(studentName.substring(0, 3).toUpperCase(Locale.US) + "123");
         student.setDegree(degree);
         int rowsAffectedStudent = DaoFactory.createStudentDao().insertStudent(student);
         String gradeId = "";
