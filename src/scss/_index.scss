@@ -1,3 +1,5 @@
+//index.jsp specific styles and also general web app styles
+
 html {
   position: relative;
   min-height: 100%;
@@ -8,18 +10,21 @@ body {
   color: $black;
   display: grid;
   background-image: linear-gradient(lighten($blue, 20) 8%, $white 64%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 input,
 button,
 .btn {
   border: 1px solid $black;
-  // height: 2em;
   border-radius: 16px;
   margin: 6px 0px;
   text-align: center;
   transition: all 0.2s;
   cursor: pointer;
+  text-decoration: none;
 }
 
 input[type="radio"] {
