@@ -62,9 +62,9 @@ devSass {
     dependsOn check
 }
 
-pmd {
-    ignoreFailures = true
-}
+// pmd {
+//     ignoreFailures = true
+// }
 
 // OTHER CONFIGS
 if (hasProperty('buildScan')) {
