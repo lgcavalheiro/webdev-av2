@@ -6,8 +6,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@attribute name="title" 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${title}</title>
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="shortcut icon" href="view/asset/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/view/asset/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <jsp:doBody />

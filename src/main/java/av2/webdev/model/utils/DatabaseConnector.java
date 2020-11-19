@@ -20,16 +20,4 @@ public class DatabaseConnector {
             throw new DatabaseException(e.getMessage());
         }
     }
-
-    // private static Properties loadProperties() throws IOException {
-    // try (FileInputStream fs = new
-    // FileInputStream("build/resources/main/db.properties")) {
-    // Properties properties = new Properties();
-    // properties.load(fs);
-    // fs.close();
-    // return properties;
-    // } catch (IOException e) {
-    // throw new DatabaseException(e.getMessage());
-    // }
-    // }
 }
