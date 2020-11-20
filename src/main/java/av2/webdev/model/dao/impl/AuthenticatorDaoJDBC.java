@@ -39,7 +39,7 @@ public class AuthenticatorDaoJDBC implements AuthenticatorDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Authenticator DAo", "authenticateUser");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "authenticateUser");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
