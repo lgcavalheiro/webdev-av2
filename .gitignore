@@ -7,3 +7,4 @@ build
 # Added
 bin
 src/main/webapp/*.css
+teacher-note
