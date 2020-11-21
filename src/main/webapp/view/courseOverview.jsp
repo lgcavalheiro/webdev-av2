@@ -3,10 +3,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
 
 <t:wrapper title="SEAL - Notas de ${classNumber} - ${courseName}">
   <jsp:include page="fragment/teacherHeader.jsp"></jsp:include>
-  <a
-    class="btn"
-    id="new-student"
-    href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
+  <h1>${classNumber} - ${courseName} <i class="fas fa-user-graduate"></i></h1>
+  <a class="btn" href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
     >Cadastrar novo aluno nesta turma</a
   >
   <div id="request-status">
