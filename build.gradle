@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'av2.webdev'
-version = '0.3.0'
+version = '0.5.0'
 
 repositories {
     jcenter()
