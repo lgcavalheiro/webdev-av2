@@ -5,10 +5,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
   <jsp:include page="fragment/studentHeader.jsp"></jsp:include>
   <h1>Disciplinas <i class="fa fa-book" aria-hidden="true"></i></h1>
   <div id="container">
-    <ul>
+    <ul class="grade-list">
       <c:forEach items="${student.getCourses()}" var="el">
-        <li>
-          ${el.getClassNumber()} - ${el.getName()}
+        <li class="grade-list-item">
+          <p class="grade-list-item-title">${el.getClassNumber()} - ${el.getName()}</p>
           <c:set var="grade" value="${student.getGradeByCourseId(el.getId())}" />
           <jsp:include page="fragment/gradeTable.jsp">
             <jsp:param name="examAv1" value="${grade.getExamAv1()}" />

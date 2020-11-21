@@ -4,6 +4,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
 <t:wrapper title="SEAL - Home Professor">
   <jsp:include page="fragment/teacherHeader.jsp"></jsp:include>
   <div id="course-list">
+    <h1>Minhas turmas <i class="fas fa-school"></i></h1>
     <ul>
       <c:forEach items="${teacher.getCourses()}" var="el">
         <li>

@@ -3,7 +3,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
 
 <t:wrapper title="SEAL - Notas de ${classNumber} - ${courseName}">
   <jsp:include page="fragment/teacherHeader.jsp"></jsp:include>
-  <a class="btn" href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
+  <a
+    class="btn"
+    id="new-student"
+    href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
     >Cadastrar novo aluno nesta turma</a
   >
   <div id="request-status">
@@ -18,23 +21,25 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
       </c:choose>
     </c:if>
   </div>
-  <c:forEach items="${studentList}" var="el">
-    <li class="grade-item">
-      <c:set var="grade" value="${el.getGrades().get(0)}" />
-      <jsp:include page="fragment/gradeTableEdit.jsp">
-        <jsp:param name="studentId" value="${el.getId()}" />
-        <jsp:param name="courseId" value="${courseId}" />
-        <jsp:param name="studentName" value="${el.getName()}" />
-        <jsp:param name="examAv1" value="${grade.getExamAv1()}" />
-        <jsp:param name="examAv2" value="${grade.getExamAv2()}" />
-        <jsp:param name="examAv3" value="${grade.getExamAv3()}" />
-        <jsp:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
-        <jsp:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
-        <jsp:param name="finalGrade" value="${grade.getFinalGrade()}" />
-        <jsp:param name="isApproved" value="${grade.getIsApproved()}" />
-        <jsp:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
-      </jsp:include>
-    </li>
-  </c:forEach>
-  <c:remove var="grade" />
+  <ul class="grade-list teacher-list">
+    <c:forEach items="${studentList}" var="el">
+      <li class="grade-list-item">
+        <c:set var="grade" value="${el.getGrades().get(0)}" />
+        <jsp:include page="fragment/gradeTableEdit.jsp">
+          <jsp:param name="studentId" value="${el.getId()}" />
+          <jsp:param name="courseId" value="${courseId}" />
+          <jsp:param name="studentName" value="${el.getName()}" />
+          <jsp:param name="examAv1" value="${grade.getExamAv1()}" />
+          <jsp:param name="examAv2" value="${grade.getExamAv2()}" />
+          <jsp:param name="examAv3" value="${grade.getExamAv3()}" />
+          <jsp:param name="assignmentAv1" value="${grade.getAssignmentAv1()}" />
+          <jsp:param name="assignmentAv2" value="${grade.getAssignmentAv2()}" />
+          <jsp:param name="finalGrade" value="${grade.getFinalGrade()}" />
+          <jsp:param name="isApproved" value="${grade.getIsApproved()}" />
+          <jsp:param name="updateTimestamp" value="${grade.getUpdateTimestamp().toString()}" />
+        </jsp:include>
+      </li>
+    </c:forEach>
+    <c:remove var="grade" />
+  </ul>
 </t:wrapper>

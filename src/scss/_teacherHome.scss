@@ -1,1 +1,10 @@
 // teacherHome.jsp specific styles
+
+#course-list {
+    display: grid;
+    justify-content: center;
+}
+
+#course-list > ul {
+    list-style: none;
+}
