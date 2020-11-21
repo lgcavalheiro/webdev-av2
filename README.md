@@ -44,3 +44,8 @@ O projeto depende de uma base de dados MySQL, uma está disponível na nuvem pro
 
 ## PMD report:
 ![PMD report](./pmd.png)
+
+## Últimos Gradle Scans:
+- OSX OpenJDK 10: https://scans.gradle.com/s/ffl56tnpr23ns
+- OSX OpenJDK 11: https://scans.gradle.com/s/ezb3s2al4d4z6
+- OSX OpenJDK 15: https://scans.gradle.com/s/c32fzp4wehsr6
