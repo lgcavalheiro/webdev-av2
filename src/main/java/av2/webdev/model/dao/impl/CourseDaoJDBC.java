@@ -39,7 +39,7 @@ public class CourseDaoJDBC implements CourseDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Course Dao", "getCourseByStudentId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getCourseByStudentId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -75,7 +75,7 @@ public class CourseDaoJDBC implements CourseDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Course Dao", "getCourseByTeacherId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getCourseByTeacherId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)

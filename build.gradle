@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'av2.webdev'
-version = '0.0.1'
+version = '0.3.0'
 
 repositories {
     jcenter()
@@ -28,43 +28,74 @@ gretty {
     contextPath = '/'
 }
 
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+// TASK CONFIGS
+defaultTasks 'development'
+
+def printTask = {
+    task -> println "Running ${task.description.toLowerCase()}"
+}
+
+task development {
+    group 'Project Specific'
+    description 'Development build task'
+    dependsOn = ['check', 'devSass', 'tomcatRun']
+    
+    doFirst printTask
+}
+
+task production {
+    group 'Project Specific'
+    description 'Production build task'
+    dependsOn = ['prodSass', 'war']
+
+    doFirst printTask
+}
+
 sass {
     dev {
         srcDir = file("$projectDir/src/scss")
         outDir = file("$projectDir/src/main/webapp")
         exclude = "**/_*.scss"
+        description = 'Compile scss files into a single css file (development)'
     }
     prod {
         srcDir = file("$projectDir/src/scss")
         outDir = file("$projectDir/src/main/webapp")
         exclude = "**/_*.scss"
         minify = true
+        description = 'Compile scss files into a single and minified css file (production)'
     }
-}
-
-jacoco {
-    toolVersion = "0.8.6"
 }
 
 test {
     finalizedBy jacocoTestReport 
 }
 
-jacocoTestReport {
-    dependsOn test 
-}
-
-check {
-    dependsOn clean
-}
-
-devSass {
-    dependsOn check
-}
-
 pmd {
     ignoreFailures = true
 }
+
+// task copyDbProperties(type: Copy) {
+//     from 'src/main/resources/db.properties'
+//     into 'build/classes/java/main/av2/webdev/model/utils/'
+// }
+
+// task copyDbPropertiesTest(type: Copy) {
+//     from 'test/resources/db.properties'
+//     into 'bin/main/av2/webdev/model/utils/'
+// }
+
+// processResources {
+//     finalizedBy copyDbProperties
+// }
+
+// processTestResources {
+//     finalizedBy copyDbPropertiesTest
+// }
 
 // OTHER CONFIGS
 if (hasProperty('buildScan')) {

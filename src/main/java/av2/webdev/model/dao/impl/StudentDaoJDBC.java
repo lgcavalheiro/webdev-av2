@@ -40,7 +40,7 @@ public class StudentDaoJDBC implements StudentDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Student Dao", "getStudentByCourseId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getStudentByCourseId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -71,7 +71,7 @@ public class StudentDaoJDBC implements StudentDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Student Dao", "insertStudent");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "insertStudent");
                 if (query != null)
                     query.close();
                 if (resultSet != null)

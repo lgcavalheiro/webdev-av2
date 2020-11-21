@@ -37,7 +37,7 @@ public class DegreeDaoJDBC implements DegreeDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Degree Dao", "getDegreeByStudentId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getDegreeByStudentId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -74,7 +74,7 @@ public class DegreeDaoJDBC implements DegreeDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("Degree Dao", "getDegreeByCourseId");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getDegreeByCourseId");
                 if (query != null)
                     query.close();
                 if (resultSet != null)

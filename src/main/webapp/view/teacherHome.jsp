@@ -8,7 +8,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
       <c:forEach items="${teacher.getCourses()}" var="el">
         <li>
           <a
-            href="/courseOverview?courseId=${el.getId()}&classNumber=${el.getClassNumber()}&name=${el.getName()}"
+            href="${pageContext.request.contextPath}/courseOverview?courseId=${el.getId()}&classNumber=${el.getClassNumber()}&name=${el.getName()}"
             >${el.getClassNumber()} - ${el.getName()}</a
           >
         </li>

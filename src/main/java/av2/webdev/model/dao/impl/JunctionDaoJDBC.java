@@ -30,7 +30,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("junction Dao", "insertStudentCourseGradeJunction");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "insertStudentCourseGradeJunction");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -63,7 +63,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("junction Dao", "getGradeIdByStudentAndCourse");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "getGradeIdByStudentAndCourse");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
@@ -93,7 +93,7 @@ public class JunctionDaoJDBC implements JunctionDao {
             System.out.println(e);
         } finally {
             try {
-                QueryLogger.logQuery("junction Dao", "deleteStudentCourseGradeJunction");
+                QueryLogger.logQuery(this.getClass().getSimpleName(), "deleteStudentCourseGradeJunction");
                 if (query != null)
                     query.close();
                 if (resultSet != null)
