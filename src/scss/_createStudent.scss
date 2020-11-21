@@ -1,0 +1,14 @@
+// createStudent.jsp styles
+
+form[name="createStudent"] {
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+}
+
+#create-student-fieldset {
+  max-width: 32em;
+  justify-self: center;
+  margin-top: 8em;
+  border-radius: 16px;
+}

@@ -4,5 +4,7 @@
     >Olá aluno(a) ${student.getName()} - ${student.getId()} - Graduação em
     ${student.getDegree().getName()}
   </span>
-  <a class="btn" href="${pageContext.request.contextPath}/logout">Sair &DoubleRightArrow;</a>
+  <a class="btn" href="${pageContext.request.contextPath}/logout"
+    >Sair <i class="fas fa-sign-out-alt"></i
+  ></a>
 </nav>

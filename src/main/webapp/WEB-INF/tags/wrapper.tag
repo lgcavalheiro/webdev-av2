@@ -8,13 +8,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@attribute name="title" 
     <title>${title}</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css" />
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/view/asset/favicon.ico" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/3e899215ad.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <jsp:doBody />
     <footer>
       <p>
-        Copyleft (ɔ) Lucas Guimarães Cavalheiro - 2012200347 &amp; Wallace Arruda de Macedo -
-        2013101787
+        Copyleft (ɔ) Lucas Guimarães Cavalheiro - 2012200347 <i class="fa fa-graduation-cap" aria-hidden="true"></i> &amp; Wallace Arruda de Macedo -
+        2013101787 <i class="fa fa-graduation-cap" aria-hidden="true"></i>
       </p>
     </footer>
   </body>

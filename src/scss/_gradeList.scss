@@ -1,0 +1,23 @@
+// grade list styles
+
+.grade-list {
+  list-style: none;
+  grid-template-columns: 50% 50%;
+  display: grid;
+  gap: 2em;
+  padding: 0;
+  margin: 0em 0em 4em 0em;
+}
+
+.grade-list-item {
+  display: grid;
+}
+
+.grade-list-item-title {
+  justify-self: center;
+}
+
+.teacher-list {
+  justify-self: center;
+}
+
