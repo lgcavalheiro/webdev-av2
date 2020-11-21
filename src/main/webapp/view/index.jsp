@@ -14,10 +14,10 @@
                 <input type="radio" name="userType" id="professor" value="teacher">
             </div>
 
-            <label for="id">Id de acesso</label>
+            <label for="id">Id de acesso <i class="fa fa-user" aria-hidden="true"></i></label> 
             <input type="text" name="id" id="id" required>
 
-            <label for="password">Senha de acesso</label>
+            <label for="password">Senha de acesso <i class="fa fa-unlock" aria-hidden="true"></i></label> 
             <input type="password" name="password" id="password" required>
 
             <input type="submit" value="Acessar">

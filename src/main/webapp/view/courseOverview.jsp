@@ -4,7 +4,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
 <t:wrapper title="SEAL - Notas de ${classNumber} - ${courseName}">
   <jsp:include page="fragment/teacherHeader.jsp"></jsp:include>
   <a class="btn" href="${pageContext.request.contextPath}/createStudent?courseId=${courseId}"
-    >Criar novo aluno nesta turma</a
+    >Cadastrar novo aluno nesta turma</a
   >
   <div id="request-status">
     <c:if test="${rowsAffected != null && header.referer.contains('courseOverview')}">

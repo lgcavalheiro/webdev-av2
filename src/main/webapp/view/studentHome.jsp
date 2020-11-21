@@ -3,6 +3,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@taglib prefix="t" tagdi
 
 <t:wrapper title="SEAL - Home Aluno">
   <jsp:include page="fragment/studentHeader.jsp"></jsp:include>
+  <h1>Disciplinas <i class="fa fa-book" aria-hidden="true"></i></h1>
   <div id="container">
     <ul>
       <c:forEach items="${student.getCourses()}" var="el">
